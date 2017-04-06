@@ -38,7 +38,7 @@ public class Main {
 
         // create a resource config that scans for JAX-RS resources and providers
         // in com.example package
-        final ResourceConfig rc = new ResourceConfig().packages("com.oracle.ttc.mysqlmicroservice");
+        final ResourceConfig rc = new ResourceConfig().packages("com.oracle.ttc.mysqlmicroservice.controller");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
@@ -68,7 +68,7 @@ public class Main {
         System.out.println(String.format("%s to see the default resource", BASE_URI));
         System.out.println(String.format("%sapplication.wadl to see the WADL resource", BASE_URI));
         System.out.println(String.format("%stime to see the time", BASE_URI));
-        System.out.println(String.format("%scatalog</search> to see a linked cataog items in database", BASE_URI));
+        System.out.println(String.format("%scatalog to see a linked cataog items in database", BASE_URI));
         System.out.println(String.format("%sjarstatic/index.html to see the jar static resource", BASE_URI));
         System.out.println();
         System.out.println("Press enter to stop the server...");

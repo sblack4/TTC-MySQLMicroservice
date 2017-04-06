@@ -15,7 +15,7 @@ public class CatalogDaoTest {
 	@Test
 	public void getCatalog() throws Exception{
 		//setup
-		int expectedSize = 10;
+		int expectedSize = 8;
 		
 		//execute
 		List<CatalogItem> catalog = dao.getCatalog();

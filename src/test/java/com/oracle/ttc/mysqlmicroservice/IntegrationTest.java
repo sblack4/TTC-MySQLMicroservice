@@ -1,6 +1,7 @@
 package com.oracle.ttc.mysqlmicroservice;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -34,5 +35,6 @@ public class IntegrationTest {
     public void testGetCatalog() {
         String responseMsg = target.path("catalog").request().get(String.class);
         assertNotNull(responseMsg);
+        assertTrue(responseMsg.length() > 0);
     } 
 }

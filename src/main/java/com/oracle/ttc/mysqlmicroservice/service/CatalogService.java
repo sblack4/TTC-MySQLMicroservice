@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.ws.rs.Path;
-
 import com.oracle.ttc.mysqlmicroservice.dao.CatalogDao;
 import com.oracle.ttc.mysqlmicroservice.model.CatalogItem;
 
-@Path("catalog")
+
 public class CatalogService {
 
 	private CatalogDao dao;

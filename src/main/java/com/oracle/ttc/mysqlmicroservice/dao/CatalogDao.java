@@ -8,28 +8,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Optional;
 
 import com.oracle.ttc.mysqlmicroservice.model.CatalogItem;
 
 public class CatalogDao {
 
-	private String username;
-	private String password;
-	private String server;
+	private Optional<String> username;
+	private Optional<String> password;
+	private Optional<String> connectString;
 
 	public List<CatalogItem> getCatalog() throws IOException, SQLException, ClassNotFoundException {
 
-		java.io.InputStream is = this.getClass().getResourceAsStream("db.properties");
-		java.util.Properties p = new Properties();
-		p.load(is);
-		this.username = p.getProperty("db.username");
-		this.password = p.getProperty("db.password");
-		this.server = p.getProperty("db.server");
+		username = Optional.ofNullable(System.getenv("MYSQL_USERNAME"));
+		password = Optional.ofNullable(System.getenv("MYSQL_PASSWORD"));
+		connectString = Optional.ofNullable(System.getenv("MYSQL_CONNECT_STRING"));
 
-		Class.forName("com.mysql.jdbc.Driver");
-		String connection = "jdbc:mysql://" + this.server + ":3306/";
-		Connection con = DriverManager.getConnection(connection,this.username, this.password);
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(connectString.orElse("jdbc:mysql://localhost:3306/?useSSL=false"),
+				this.username.orElse("root"), this.password.orElse("oracle"));
 		// here sonoo is database name, root is username and password
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from catalog.catalog_items");
