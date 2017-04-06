@@ -65,11 +65,7 @@ public class Main {
                 new CLStaticHttpHandler(new URLClassLoader(new URL[] {
                     new File("target/repo/com/example/1.0-SNAPSHOT/catalog-microservice-1.0-SNAPSHOT.jar").toURI().toURL()}), "catalog/"), "/jarstatic");
         System.out.println("In order to test the server please try the following urls:");
-        System.out.println(String.format("%s to see the default resource", BASE_URI));
-        System.out.println(String.format("%sapplication.wadl to see the WADL resource", BASE_URI));
-        System.out.println(String.format("%stime to see the time", BASE_URI));
         System.out.println(String.format("%scatalog to see a linked cataog items in database", BASE_URI));
-        System.out.println(String.format("%sjarstatic/index.html to see the jar static resource", BASE_URI));
         System.out.println();
         System.out.println("Press enter to stop the server...");
         
