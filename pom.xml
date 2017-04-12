@@ -64,6 +64,11 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>4.1.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.glassfish.jersey.security</groupId>
@@ -144,6 +149,14 @@
 				</executions>
 				<configuration>
 					<mainClass>com.oracle.ttc.mysqlmicroservice.Main</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.1.1</version>
+				<configuration>
+					<skipDefaultCallbacks>true</skipDefaultCallbacks>
 				</configuration>
 			</plugin>
 		</plugins>
