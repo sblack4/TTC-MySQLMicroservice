@@ -1,20 +1,12 @@
 package com.oracle.ttc.mysqlmicroservice;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.net.UnknownHostException;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
-import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
-import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.grizzly.http.server.Request;
-import org.glassfish.grizzly.http.server.Response;
+import org.glassfish.grizzly.http.server.NetworkListener;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -53,19 +45,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
         
-        server.getServerConfiguration().addHttpHandler(new HttpHandler() {
-            @Override
-            public void service(Request request, Response response) throws Exception {
-                response.setContentType("text/plain");
-                response.getWriter().write("The time using the new java.time API in Java 8 is: " + LocalTime.now().truncatedTo(ChronoUnit.SECONDS));
-            }
-        }, "/time");
-        
-        server.getServerConfiguration().addHttpHandler(
-                new CLStaticHttpHandler(new URLClassLoader(new URL[] {
-                    new File("target/repo/com/example/1.0-SNAPSHOT/catalog-microservice-1.0-SNAPSHOT.jar").toURI().toURL()}), "catalog/"), "/jarstatic");
         System.out.println("In order to test the server please try the following urls:");
-        System.out.println(String.format("%scatalog to see a linked cataog items in database", BASE_URI));
+        System.out.println(String.format("%scatalog/v1 to see a linked cataog items in database", BASE_URI));
         System.out.println();
         System.out.println("Press enter to stop the server...");
         

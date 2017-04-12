@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.oracle.ttc.mysqlmicroservice.model.CatalogItem;
 import com.oracle.ttc.mysqlmicroservice.service.CatalogService;
 
-@Path("catalog")
+@Path("/catalog")
 public class CatalogController {
 
 	private CatalogService service;
@@ -28,28 +28,22 @@ public class CatalogController {
 		super();
 		this.service = new CatalogService();
 	}
-	
-	
+
 	@GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getCatalog() {
-		try{
-    	List<CatalogItem> catalog = service.getCatalog();
-    	ObjectWriter ow = new ObjectMapper().writer();
-    	String json = ow.writeValueAsString(catalog);
-    	return Response.ok()
-    			.entity(json)
-    			.header("Access-Control-Allow-Origin", "*")
-    			.header("Access-Control-Allow-Methods", "GET")
-    			.build();
-		} catch(Exception e){
-			return Response.status(Status.INTERNAL_SERVER_ERROR)
-	    			.header("Access-Control-Allow-Origin", "*")
-	    			.header("Access-Control-Allow-Methods", "GET")
-	    			.build();
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/v1")
+	public Response getCatalog() {
+		try {
+			List<CatalogItem> catalog = service.getCatalog();
+			ObjectWriter ow = new ObjectMapper().writer();
+			String json = ow.writeValueAsString(catalog);
+			return Response.ok().entity(json).header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET").build();
+		} catch (Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET").build();
 		}
-    	
-    	
-    }
-	
+
+	}
+
 }
