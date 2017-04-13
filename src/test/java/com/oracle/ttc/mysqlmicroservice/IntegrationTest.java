@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -43,6 +44,8 @@ public class IntegrationTest {
 			assertTrue(responseMsg.length() > 0);
 		} catch (InternalServerErrorException e) {
 			// ignore as DB is not attached
+		} catch (NotFoundException nfe){
+			// catalog not reachable
 		}
 	}
 }
