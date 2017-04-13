@@ -25,7 +25,7 @@ public class CatalogDao {
 		connectString = Optional.ofNullable(System.getenv("MYSQLCS_CONNECT_STRING"));
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection(connectString.orElse("jdbc:mysql://localhost:3306/?useSSL=false"),
+		Connection con = DriverManager.getConnection("jdbc:mysql://" + connectString.orElse("localhost:3306/?useSSL=false"),
 				this.username.orElse("root"), this.password.orElse("oracle"));
 		// here sonoo is database name, root is username and password
 		Statement stmt = con.createStatement();
