@@ -20,9 +20,9 @@ public class CatalogDao {
 
 	public List<CatalogItem> getCatalog() throws IOException, SQLException, ClassNotFoundException {
 
-		username = Optional.ofNullable(System.getenv("MYSQL_USERNAME"));
-		password = Optional.ofNullable(System.getenv("MYSQL_PASSWORD"));
-		connectString = Optional.ofNullable(System.getenv("MYSQL_CONNECT_STRING"));
+		username = Optional.ofNullable(System.getenv("MYSQLCS_USER_NAME"));
+		password = Optional.ofNullable(System.getenv("MYSQLCS_USER_PASSWORD"));
+		connectString = Optional.ofNullable(System.getenv("MYSQLCS_CONNECT_STRING"));
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(connectString.orElse("jdbc:mysql://localhost:3306/?useSSL=false"),
