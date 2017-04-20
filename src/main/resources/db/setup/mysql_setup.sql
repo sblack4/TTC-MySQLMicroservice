@@ -6,7 +6,7 @@ CREATE TABLE `catalog`.`catalog_items` (
   `name` VARCHAR(50) NOT NULL,
   `description` LONGTEXT NULL,
   `image` LONGTEXT NULL,
-  `price` DECIMAL(15,2) NULL,
+  `price` DECIMAL(15,4) NULL,
   PRIMARY KEY (`name`));
   
   INSERT INTO `catalog`.`catalog_items`(`name`,`description`,`image`,`price`)VALUES
