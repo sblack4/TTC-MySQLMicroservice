@@ -21,6 +21,7 @@
         <include>bin/**</include>
       	<include>repo/**</include>
       	<include>config/**</include>
+		<include>catalog-microservice.jar</include>
       </includes>
       <excludes>
       	<exclude>*.zip</exclude>
